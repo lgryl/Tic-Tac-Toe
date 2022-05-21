@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GameView: View {
     @Environment(\.presentationMode) private var presentationMode
-    
     @ObservedObject private var viewModel: GameViewModel
     
     var body: some View {
@@ -24,8 +23,7 @@ struct GameView: View {
                 navigationRow()
                     .padding()
             }
-            .background(Color(white: 250 / 255))
-            .navigationTitle("Game")
+            .background(Theme.Colors.background)
             .navigationBarHidden(true)
         }
         .navigationBarBackButtonHidden(true)
@@ -35,31 +33,32 @@ struct GameView: View {
     init(boardSize: Int) {
         viewModel = GameViewModel(boardSize: boardSize)
     }
-    
-    private func navigationRow() -> some View {
+}
+
+private extension GameView {
+    func navigationRow() -> some View {
         HStack {
-            Button {
+            navigationButton(imageName: "arrow.backward") {
                 presentationMode.wrappedValue.dismiss()
-            } label: {
-                TileView {
-                    Image(systemName: "arrow.backward")
-                        .font(.title)
-                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
-                }
             }
-            .frame(maxWidth: 100)
             Spacer()
-            Button {
+            navigationButton(imageName: "arrow.counterclockwise") {
                 viewModel.resetGame()
-            } label: {
-                TileView {
-                    Image(systemName: "arrow.counterclockwise")
-                        .font(.title)
-                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
-                }
             }
-            .frame(maxWidth: 100)
         }
+    }
+    
+    func navigationButton(imageName: String, action: @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            TileView {
+                Image(systemName: imageName)
+                    .font(.title)
+                    .foregroundStyle(Theme.Gradients.cold)
+            }
+        }
+        .frame(maxWidth: 100)
     }
 }
 
@@ -67,8 +66,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GameView(boardSize: 3)
             .previewDevice("iPhone 13 Pro Max")
-            .previewInterfaceOrientation(.portraitUpsideDown)
-        GameView(boardSize: 3)
+        GameView(boardSize: 5)
             .previewDevice("iPhone SE (3rd generation)")
     }
 }

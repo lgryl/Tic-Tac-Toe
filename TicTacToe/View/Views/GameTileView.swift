@@ -18,13 +18,13 @@ struct GameTileView: View {
                         .frame(width: geometry.size.width * 0.7, height: geometry.size.height * 0.7, alignment: .center)
                 }
             }
-            .animation(.easeInOut(duration: 0.2), value: tile)
+            .animation(.easeInOut(duration: Theme.Animation.duration), value: tile)
         }
         .aspectRatio(contentMode: .fit)
     }
     
     private func color(for winning: Bool) -> Color {
-        winning ? .init(white: 0.95) : .white
+        winning ? Theme.Colors.tileWinning : Theme.Colors.tileDefault
     }
 }
 

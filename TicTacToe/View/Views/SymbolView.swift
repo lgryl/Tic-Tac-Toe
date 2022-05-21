@@ -32,9 +32,9 @@ struct SymbolView: View {
     private func gradient(for symbol: Game.Symbol) -> some ShapeStyle {
         switch symbol {
         case .nought:
-            return LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom)
+            return Theme.Gradients.cold
         case .cross:
-            return LinearGradient(colors: [.orange, .red], startPoint: .top, endPoint: .bottom)
+            return Theme.Gradients.warm
         }
     }
 }

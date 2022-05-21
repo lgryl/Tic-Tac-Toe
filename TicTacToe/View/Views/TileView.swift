@@ -16,7 +16,7 @@ struct TileView<Content>: View where Content: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(fillColor)
                 .aspectRatio(1, contentMode: .fit)
-                .shadow(color: Color(white: 0.9), radius: 3, x: 0, y: 5)
+                .shadow(color: Theme.Colors.shadow, radius: 3, x: 0, y: 5)
             content()
         }
     }

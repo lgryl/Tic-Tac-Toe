@@ -24,7 +24,7 @@ struct Game {
         }
     }
     
-    enum State {
+    private enum State {
         case ongoing(currentSymbol: Symbol)
         case finished
     }
@@ -52,17 +52,14 @@ struct Game {
     }
     
     mutating func makeMoveAt(row: Int, column: Int) {
-        //guard <= count
-        
+        guard row >= 0 && row < boardSize && column >= 0 && column < boardSize else { return }
         guard case let .ongoing(currentSymbol) = state else { return }
-        
         guard board[row][column].symbol == nil else { return }
         
         board[row][column].symbol = currentSymbol
         
         let winningTiles = self.winningTiles(for: currentSymbol)
-        
-        if winningTiles.count > 0 {
+        if !winningTiles.isEmpty {
             for tile in winningTiles {
                 board[tile.row][tile.column].winning = true
             }

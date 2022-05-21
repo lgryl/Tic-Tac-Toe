@@ -28,8 +28,13 @@ struct BoardView: View {
     }
 }
 
-//struct BoardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BoardView(board: <#T##[[Game.Tile]]#>, onTileSelected: <#T##(Int, Int) -> Void##(Int, Int) -> Void##(_ row: Int, _ column: Int) -> Void#>)
-//    }
-//}
+struct BoardView_Previews: PreviewProvider {
+    static var previews: some View {
+        BoardView(board:
+                    [
+                        [.init(symbol: .nought),.init(symbol: nil),.init(symbol: nil)],
+                        [.init(symbol: nil),.init(symbol: .nought),.init(symbol: nil)],
+                        [.init(symbol: nil),.init(symbol: nil),.init(symbol: .cross)]
+                    ], onTileSelected: { _, _ in })
+    }
+}

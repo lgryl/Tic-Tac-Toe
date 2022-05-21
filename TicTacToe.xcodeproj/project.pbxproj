@@ -14,6 +14,7 @@
 		CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6F82826712500BCB20A /* AnyShape.swift */; };
 		CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6FA2826728A00BCB20A /* SymbolView.swift */; };
 		CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6FD282676FE00BCB20A /* GameTileView.swift */; };
+		CB3FE040282B6E9100259CC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FE03F282B6E9100259CC8 /* Theme.swift */; };
 		CB586C05282972DA00138289 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB586C04282972DA00138289 /* MenuViewModel.swift */; };
 		CBC314FC28170CD2004CBD67 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */; };
 		CBC314FE28170CD2004CBD67 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FD28170CD2004CBD67 /* GameView.swift */; };
@@ -31,6 +32,7 @@
 		CB3FD6F82826712500BCB20A /* AnyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyShape.swift; sourceTree = "<group>"; };
 		CB3FD6FA2826728A00BCB20A /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		CB3FD6FD282676FE00BCB20A /* GameTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTileView.swift; sourceTree = "<group>"; };
+		CB3FE03F282B6E9100259CC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CB586C04282972DA00138289 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		CBC314F828170CD2004CBD67 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				CB3FD6F4282670B400BCB20A /* Views */,
 				CB2501912824DE8400ACFB46 /* Shapes */,
+				CB3FE03F282B6E9100259CC8 /* Theme.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				CB2501932824DE8C00ACFB46 /* Cross.swift in Sources */,
 				CBC3150A2817132E004CBD67 /* Game.swift in Sources */,
 				CB586C05282972DA00138289 /* MenuViewModel.swift in Sources */,
+				CB3FE040282B6E9100259CC8 /* Theme.swift in Sources */,
 				CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */,
 				CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */,
 				CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */,
@@ -355,7 +359,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +390,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

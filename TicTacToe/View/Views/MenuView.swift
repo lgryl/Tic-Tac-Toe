@@ -11,55 +11,63 @@ struct MenuView: View {
     @ObservedObject private var viewModel = MenuViewModel()
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 Spacer()
-                HStack {
-                    SymbolView(symbol: .nought)
-                        .frame(maxWidth: 150)
-                        .padding()
-                    SymbolView(symbol: .cross)
-                        .frame(maxWidth: 150)
-                        .padding()
-                }
-                .padding()
+                logoView
+                    .padding()
                 Spacer()
-                Button {
-                    viewModel.toggleBoardSize()
-                } label: {
-                    TileView {
-                        Text("\(viewModel.boardSize)x\(viewModel.boardSize)")
-                            .font(.title)
-                            .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
-                    }
-                }
-
-                
-                .frame(maxWidth: 125)
-                .padding(.bottom)
-                NavigationLink(destination: GameView(boardSize: viewModel.boardSize)) {
-                    TileView {
-                        Image(systemName: "play")
-                            .font(.title)
-                            .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
-                    }
-                    .frame(maxWidth: 125)
-                }
+                boardSizeButton
+                playButton
                 Spacer()
             }
             .frame(maxWidth: .infinity)
-            .background(Color(white: 250 / 255))
+            .background(Theme.Colors.background)
         }
         .navigationViewStyle(.stack)
         .navigationBarHidden(true)
+    }
+    
+    var logoView: some View {
+        let symbolSize: CGFloat = 150
+        return HStack {
+            SymbolView(symbol: .nought)
+                .frame(maxWidth: symbolSize)
+                .padding()
+            SymbolView(symbol: .cross)
+                .frame(maxWidth: symbolSize)
+                .padding()
+        }
+    }
+    
+    var boardSizeButton: some View {
+        Button {
+            viewModel.toggleBoardSize()
+        } label: {
+            TileView {
+                Text("\(viewModel.boardSize)x\(viewModel.boardSize)")
+                    .font(.title)
+                    .foregroundStyle(Theme.Gradients.cold)
+            }
+        }
+        .frame(maxWidth: 125)
+        .padding(.bottom)
+    }
+    
+    var playButton: some View {
+        NavigationLink(destination: GameView(boardSize: viewModel.boardSize)) {
+            TileView {
+                Image(systemName: "play")
+                    .font(.title)
+                    .foregroundStyle(Theme.Gradients.cold)
+            }
+            .frame(maxWidth: 125)
+        }
     }
 }
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
-        MenuView()
-            .previewDevice("iPhone 13 Pro Max")
     }
 }
