@@ -17,7 +17,8 @@ struct GameView: View {
                 ForEach(0..<viewModel.game.boardSize, id: \.self) { row in
                     HStack {
                         ForEach(0..<viewModel.game.boardSize, id: \.self) { column in
-                            TileView(tile: viewModel.game.board[row][column]) {
+                            GameTileView(tile: viewModel.game.board[row][column])
+                            .onTapGesture {
                                 viewModel.makeMoveAt(row: row, column: column)
                             }
                         }

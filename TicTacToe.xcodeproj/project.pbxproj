@@ -11,6 +11,7 @@
 		CB3FD6F7282670FE00BCB20A /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6F6282670FE00BCB20A /* TileView.swift */; };
 		CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6F82826712500BCB20A /* AnyShape.swift */; };
 		CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6FA2826728A00BCB20A /* SymbolView.swift */; };
+		CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6FD282676FE00BCB20A /* GameTileView.swift */; };
 		CBC314FC28170CD2004CBD67 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */; };
 		CBC314FE28170CD2004CBD67 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FD28170CD2004CBD67 /* GameView.swift */; };
 		CBC3150028170CD4004CBD67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC314FF28170CD4004CBD67 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		CB3FD6F6282670FE00BCB20A /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		CB3FD6F82826712500BCB20A /* AnyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyShape.swift; sourceTree = "<group>"; };
 		CB3FD6FA2826728A00BCB20A /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
+		CB3FD6FD282676FE00BCB20A /* GameTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTileView.swift; sourceTree = "<group>"; };
 		CBC314F828170CD2004CBD67 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		CBC314FD28170CD2004CBD67 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				CBC314FD28170CD2004CBD67 /* GameView.swift */,
 				CB3FD6F6282670FE00BCB20A /* TileView.swift */,
 				CB3FD6FA2826728A00BCB20A /* SymbolView.swift */,
+				CB3FD6FD282676FE00BCB20A /* GameTileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				CB2501932824DE8C00ACFB46 /* Cross.swift in Sources */,
 				CBC3150A2817132E004CBD67 /* Game.swift in Sources */,
 				CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */,
+				CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */,
 				CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */,
 				CBC3150C28171536004CBD67 /* ViewModel.swift in Sources */,
 				CB3FD6F7282670FE00BCB20A /* TileView.swift in Sources */,

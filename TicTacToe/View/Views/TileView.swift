@@ -7,32 +7,31 @@
 
 import SwiftUI
 
-struct TileView: View {
-    var tile: Game.Tile
-    var onTap: () -> Void
+struct TileView<Content>: View where Content: View {
+    private let fillColor: Color
+    private var content: () -> Content
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(color(for: tile.winning))
+                .fill(fillColor)
                 .aspectRatio(1, contentMode: .fit)
                 .shadow(color: Color(white: 0.9), radius: 3, x: 0, y: 5)
-            if let symbol = tile.symbol {
-                SymbolView(symbol: symbol)
-            }
-        }
-        .onTapGesture {
-            onTap()
+            content()
         }
     }
     
-    private func color(for winning: Bool) -> Color {
-        winning ? .init(white: 0.95) : .white
+    init(fillColor: Color = .white, @ViewBuilder content: @escaping () -> Content) {
+        self.fillColor = fillColor
+        self.content = content
     }
 }
 
 struct TileView_Previews: PreviewProvider {
     static var previews: some View {
-        TileView(tile: .init(symbol: .nought, winning: false), onTap: {})
+        TileView {
+            EmptyView()
+        }
+        .padding()
     }
 }
