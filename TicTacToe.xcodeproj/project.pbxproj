@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		CBC314FC28170CD2004CBD67 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */; };
-		CBC314FE28170CD2004CBD67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FD28170CD2004CBD67 /* ContentView.swift */; };
+		CBC314FE28170CD2004CBD67 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC314FD28170CD2004CBD67 /* GameView.swift */; };
 		CBC3150028170CD4004CBD67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC314FF28170CD4004CBD67 /* Assets.xcassets */; };
 		CBC3150328170CD4004CBD67 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC3150228170CD4004CBD67 /* Preview Assets.xcassets */; };
+		CBC3150A2817132E004CBD67 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC315092817132E004CBD67 /* Game.swift */; };
+		CBC3150C28171536004CBD67 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC3150B28171536004CBD67 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CBC314F828170CD2004CBD67 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
-		CBC314FD28170CD2004CBD67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CBC314FD28170CD2004CBD67 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CBC314FF28170CD4004CBD67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBC3150228170CD4004CBD67 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CBC315092817132E004CBD67 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CBC3150B28171536004CBD67 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CBB2D4A928243F220023071A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBC315092817132E004CBD67 /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CBB2D4AA28243F440023071A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CBC314FD28170CD2004CBD67 /* GameView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CBC314EF28170CD2004CBD67 = {
 			isa = PBXGroup;
 			children = (
@@ -52,9 +72,11 @@
 			isa = PBXGroup;
 			children = (
 				CBC314FB28170CD2004CBD67 /* TicTacToeApp.swift */,
-				CBC314FD28170CD2004CBD67 /* ContentView.swift */,
+				CBB2D4A928243F220023071A /* Model */,
+				CBB2D4AA28243F440023071A /* View */,
 				CBC314FF28170CD4004CBD67 /* Assets.xcassets */,
 				CBC3150128170CD4004CBD67 /* Preview Content */,
+				CBC3150B28171536004CBD67 /* ViewModel.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -137,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBC314FE28170CD2004CBD67 /* ContentView.swift in Sources */,
+				CBC314FE28170CD2004CBD67 /* GameView.swift in Sources */,
+				CBC3150A2817132E004CBD67 /* Game.swift in Sources */,
+				CBC3150C28171536004CBD67 /* ViewModel.swift in Sources */,
 				CBC314FC28170CD2004CBD67 /* TicTacToeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
