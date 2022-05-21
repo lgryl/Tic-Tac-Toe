@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct MenuView: View {
+    @ObservedObject private var viewModel = MenuViewModel()
+    
     var body: some View {
+        
         NavigationView {
             VStack {
                 Spacer()
@@ -22,14 +25,20 @@ struct MenuView: View {
                 }
                 .padding()
                 Spacer()
-                TileView {
-                    Text("3x3")
-                        .font(.title)
-                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+                Button {
+                    viewModel.toggleBoardSize()
+                } label: {
+                    TileView {
+                        Text("\(viewModel.boardSize)x\(viewModel.boardSize)")
+                            .font(.title)
+                            .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+                    }
                 }
+
+                
                 .frame(maxWidth: 125)
                 .padding(.bottom)
-                NavigationLink(destination: GameView()) {
+                NavigationLink(destination: GameView(boardSize: viewModel.boardSize)) {
                     TileView {
                         Image(systemName: "play")
                             .font(.title)

@@ -10,7 +10,7 @@ import SwiftUI
 struct GameView: View {
     @Environment(\.presentationMode) private var presentationMode
     
-    @ObservedObject private var viewModel = ViewModel()
+    @ObservedObject private var viewModel: GameViewModel
     
     var body: some View {
         NavigationView {
@@ -32,6 +32,10 @@ struct GameView: View {
         .navigationViewStyle(.stack)
     }
         
+    init(boardSize: Int) {
+        viewModel = GameViewModel(boardSize: boardSize)
+    }
+    
     private func navigationRow() -> some View {
         HStack {
             Button {
@@ -61,10 +65,10 @@ struct GameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(boardSize: 3)
             .previewDevice("iPhone 13 Pro Max")
             .previewInterfaceOrientation(.portraitUpsideDown)
-        GameView()
+        GameView(boardSize: 3)
             .previewDevice("iPhone SE (3rd generation)")
     }
 }
