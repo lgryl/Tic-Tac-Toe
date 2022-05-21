@@ -8,9 +8,15 @@
 import SwiftUI
 
 class MenuViewModel: ObservableObject {
-    @Published var boardSize = 3
+    enum BoardSize {
+        static let minimum = 3
+        static let maximum = 5
+    }
+    
+    @Published var boardSize = BoardSize.minimum
     
     func toggleBoardSize() {
-        boardSize = (boardSize + 1) % 3 + 3
+        let boardSizeRange = (BoardSize.maximum - BoardSize.minimum + 1)
+        boardSize = (boardSize - BoardSize.minimum +  1) % boardSizeRange + BoardSize.minimum
     }
 }
