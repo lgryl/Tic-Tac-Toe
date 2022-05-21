@@ -12,11 +12,12 @@ struct SymbolView: View {
     var symbol: Game.Symbol
     
     var body: some View {
-        shape(for: symbol)
-            .stroke(gradient(for: symbol), style: .init(lineWidth: 3, lineCap: .round))
-            .aspectRatio(contentMode: .fit)
-            .padding()
-            .padding()
+        GeometryReader { geometry in
+            shape(for: symbol)
+                .stroke(gradient(for: symbol), style: .init(lineWidth: geometry.size.width * 0.03, lineCap: .round))
+                .aspectRatio(contentMode: .fit)
+        }
+        .aspectRatio(contentMode: .fit)
     }
     
     private func shape(for symbol: Game.Symbol) -> some Shape {

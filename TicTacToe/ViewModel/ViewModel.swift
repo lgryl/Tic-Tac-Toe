@@ -8,13 +8,19 @@
 import SwiftUI
 
 class ViewModel: ObservableObject {
-    @Published private(set) var game = Game(boardSize: 3)
+    private static let defaultBoardSize = 3
+    
+    @Published private(set) var game = ViewModel.createGame()
     
     func makeMoveAt(row: Int, column: Int) {
         game.makeMoveAt(row: row, column: column)
     }
     
     func resetGame() {
-        game = Game(boardSize: 3)
+        game = ViewModel.createGame()
+    }
+    
+    private static func createGame() -> Game {
+        Game(boardSize: ViewModel.defaultBoardSize)
     }
 }

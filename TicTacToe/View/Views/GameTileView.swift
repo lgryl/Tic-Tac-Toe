@@ -11,11 +11,15 @@ struct GameTileView: View {
     let tile: Game.Tile
     
     var body: some View {
-        TileView(fillColor: color(for: tile.winning)) {
-            if let symbol = tile.symbol {
-                SymbolView(symbol: symbol)
+        GeometryReader { geometry in
+            TileView(fillColor: color(for: tile.winning)) {
+                if let symbol = tile.symbol {
+                    SymbolView(symbol: symbol)
+                        .frame(width: geometry.size.width * 0.7, height: geometry.size.height * 0.7, alignment: .center)
+                }
             }
         }
+        .aspectRatio(contentMode: .fit)
     }
     
     private func color(for winning: Bool) -> Color {
