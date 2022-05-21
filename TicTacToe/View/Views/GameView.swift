@@ -13,32 +13,13 @@ struct GameView: View {
     var body: some View {
         VStack {
             Spacer()
-            VStack {
-                ForEach(0..<viewModel.game.boardSize, id: \.self) { row in
-                    HStack {
-                        ForEach(0..<viewModel.game.boardSize, id: \.self) { column in
-                            GameTileView(tile: viewModel.game.board[row][column])
-                                .onTapGesture {
-                                    viewModel.makeMoveAt(row: row, column: column)
-                                }
-                        }
-                    }
-                }
-            }
+            BoardView(board: viewModel.game.board, onTileSelected: { row, column in
+                viewModel.makeMoveAt(row: row, column: column)
+            })
             .padding()
             Spacer()
-            HStack {
-                button(imageName: "chevron.backward", action: {
-                    print("Back")
-                })
-                .frame(maxWidth: 100)
-                Spacer()
-                button(imageName: "arrow.counterclockwise", action: {
-                    viewModel.resetGame()
-                })
-                .frame(maxWidth: 100)
-            }
-            .padding(.horizontal)
+            navigationRow()
+            .padding()
         }
         .background(Color(white: 250 / 255))
     }
@@ -52,6 +33,20 @@ struct GameView: View {
                     .font(.title)
                     .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
             }
+        }
+    }
+    
+    private func navigationRow() -> some View {
+        HStack {
+            button(imageName: "chevron.backward", action: {
+                print("Back")
+            })
+            .frame(maxWidth: 100)
+            Spacer()
+            button(imageName: "arrow.counterclockwise", action: {
+                viewModel.resetGame()
+            })
+            .frame(maxWidth: 100)
         }
     }
 }
