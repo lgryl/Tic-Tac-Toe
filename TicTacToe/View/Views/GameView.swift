@@ -30,8 +30,8 @@ struct GameView: View {
         .navigationViewStyle(.stack)
     }
         
-    init(boardSize: Int) {
-        viewModel = GameViewModel(boardSize: boardSize)
+    init(variant: GameVariant) {
+        viewModel = GameViewModel(variant: variant)
     }
 }
 
@@ -64,9 +64,9 @@ private extension GameView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(boardSize: 3)
+        GameView(variant: .init(boardSize: 3, matchSize: 3))
             .previewDevice("iPhone 13 Pro Max")
-        GameView(boardSize: 5)
+        GameView(variant: .init(boardSize: 5, matchSize: 3))
             .previewDevice("iPhone SE (3rd generation)")
     }
 }

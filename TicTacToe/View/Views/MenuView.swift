@@ -55,7 +55,7 @@ struct MenuView: View {
     }
     
     var playButton: some View {
-        NavigationLink(destination: GameView(boardSize: viewModel.boardSize)) {
+        NavigationLink(destination: GameView(variant: viewModel.variant)) {
             TileView {
                 Image(systemName: "play")
                     .font(.title)

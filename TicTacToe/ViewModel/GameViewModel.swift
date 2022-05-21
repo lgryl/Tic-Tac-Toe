@@ -9,13 +9,13 @@ import SwiftUI
 
 class GameViewModel: ObservableObject {
     private static let defaultBoardSize = 3
-    private let boardSize: Int
+    private let variant: GameVariant
     
     @Published private(set) var game: Game
     
-    init(boardSize: Int = GameViewModel.defaultBoardSize) {
-        self.boardSize = boardSize
-        self.game = GameViewModel.createGame(boardSize: boardSize)
+    init(variant: GameVariant) {
+        self.variant = variant
+        self.game = GameViewModel.createGame(variant: variant)
     }
     
     func makeMoveAt(row: Int, column: Int) {
@@ -23,10 +23,10 @@ class GameViewModel: ObservableObject {
     }
     
     func resetGame() {
-        game = GameViewModel.createGame(boardSize: boardSize)
+        game = GameViewModel.createGame(variant: variant)
     }
     
-    private static func createGame(boardSize: Int) -> Game {
-        Game(boardSize: boardSize)
+    private static func createGame(variant: GameVariant) -> Game {
+        Game(variant: variant)
     }
 }

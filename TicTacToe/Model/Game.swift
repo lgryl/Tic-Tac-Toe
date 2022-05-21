@@ -34,8 +34,9 @@ struct Game {
         var winning: Bool = false
     }
     
+    private let variant: GameVariant
     private(set) var board: [[Tile]]
-    private let requiredMatchLength = 3
+    private var requiredMatchLength: Int { variant.matchSize }
     private var state = State.ongoing(currentSymbol: .nought)
     
     var boardSize: Int {
@@ -43,8 +44,9 @@ struct Game {
     }
     
     
-    init(boardSize: Int) {
-        board = .init(repeating: .init(repeating: .init(), count: boardSize), count: boardSize)
+    init(variant: GameVariant) {
+        self.variant = variant
+        board = .init(repeating: .init(repeating: .init(), count: variant.boardSize), count: variant.boardSize)
     }
     
     func symbolAt(row: Int, column: Int) -> Symbol? {

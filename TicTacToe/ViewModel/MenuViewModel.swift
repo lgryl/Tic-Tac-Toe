@@ -8,15 +8,18 @@
 import SwiftUI
 
 class MenuViewModel: ObservableObject {
-    enum BoardSize {
-        static let minimum = 3
-        static let maximum = 5
+    @AppStorage("boardSize") var boardSize = GameVariant.all[0].boardSize
+    
+    var variant: GameVariant {
+        GameVariant.all.first { $0.boardSize == boardSize } ?? GameVariant.all[0]
     }
     
-    @AppStorage("boardSize") var boardSize = BoardSize.minimum
-    
     func toggleBoardSize() {
-        let boardSizeRange = (BoardSize.maximum - BoardSize.minimum + 1)
-        boardSize = (boardSize - BoardSize.minimum +  1) % boardSizeRange + BoardSize.minimum
+        guard let index = GameVariant.all.firstIndex(where: { $0.boardSize == boardSize }) else {
+            boardSize = GameVariant.all[0].boardSize
+            return
+        }
+        let newIndex = (index + 1) % GameVariant.all.count
+        boardSize = GameVariant.all[newIndex].boardSize
     }
 }

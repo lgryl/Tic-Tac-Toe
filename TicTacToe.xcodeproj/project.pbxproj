@@ -22,6 +22,7 @@
 		CBC3150328170CD4004CBD67 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC3150228170CD4004CBD67 /* Preview Assets.xcassets */; };
 		CBC3150A2817132E004CBD67 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC315092817132E004CBD67 /* Game.swift */; };
 		CBC3150C28171536004CBD67 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC3150B28171536004CBD67 /* GameViewModel.swift */; };
+		CBFD8049283297C6002B99DE /* GameVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFD8048283297C6002B99DE /* GameVariant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		CBC3150228170CD4004CBD67 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CBC315092817132E004CBD67 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		CBC3150B28171536004CBD67 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		CBFD8048283297C6002B99DE /* GameVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVariant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				CBC315092817132E004CBD67 /* Game.swift */,
+				CBFD8048283297C6002B99DE /* GameVariant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				CBC3150A2817132E004CBD67 /* Game.swift in Sources */,
 				CB586C05282972DA00138289 /* MenuViewModel.swift in Sources */,
 				CB3FE040282B6E9100259CC8 /* Theme.swift in Sources */,
+				CBFD8049283297C6002B99DE /* GameVariant.swift in Sources */,
 				CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */,
 				CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */,
 				CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */,
