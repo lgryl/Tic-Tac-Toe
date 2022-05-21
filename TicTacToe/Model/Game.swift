@@ -35,6 +35,7 @@ struct Game {
     }
     
     private(set) var board: [[Tile]]
+    private let requiredMatchLength = 3
     private var state = State.ongoing(currentSymbol: .nought)
     
     var boardSize: Int {
@@ -74,39 +75,69 @@ struct Game {
     private func winningTiles(for symbol: Symbol) -> [TilePosition] {
         var winningTiles: [TilePosition] = []
         
-        for row in 0 ..< boardSize {
-            let matchingTilePositions = (0 ..< boardSize)
-                .map { (row: row, column: $0) }
-                .filter { board[$0.row][$0.column].symbol == symbol }
+        for rowIndex in 0 ..< boardSize {
+            let row = board[rowIndex]
+            let matches = row.split { tile in
+                tile.symbol != symbol
+            }
             
-            if matchingTilePositions.count == boardSize {
-                winningTiles.append(contentsOf: matchingTilePositions)
+            if let match = matches.first(where: { a in
+                a.count >= requiredMatchLength
+            }) {
+                for x in match.indices {
+                    winningTiles.append((row: rowIndex, column: x))
+                }
             }
         }
         
-        for column in 0 ..< boardSize {
-            let matchingTilePositions = (0 ..< boardSize)
-                .map { (row: $0, column: column) }
-                .filter { board[$0.row][$0.column].symbol == symbol }
+        for rowIndex in 0 ..< boardSize {
+            let row = board[rowIndex]
+            let matches = row.split { tile in
+                tile.symbol != symbol
+            }
             
-            if matchingTilePositions.count == boardSize {
-                winningTiles.append(contentsOf: matchingTilePositions)
+            if let match = matches.first(where: { a in
+                a.count >= requiredMatchLength
+            }) {
+                for x in match.indices {
+                    winningTiles.append((row: rowIndex, column: x))
+                }
             }
         }
         
-        let matchingDiagonalPositions = (0 ..< boardSize )
-            .map { (row: $0, column: $0) }
-            .filter { board[$0.row][$0.column].symbol == symbol }
-        if matchingDiagonalPositions.count == boardSize {
-            winningTiles.append(contentsOf: matchingDiagonalPositions)
-        }
-        
-        let matchingReverseDiagonalPositions = (0 ..< boardSize )
-            .map { (row: $0, column: boardSize - $0 - 1) }
-            .filter { board[$0.row][$0.column].symbol == symbol }
-        if matchingReverseDiagonalPositions.count == boardSize {
-            winningTiles.append(contentsOf: matchingReverseDiagonalPositions)
-        }
+//        for row in 0 ..< boardSize {
+//            let matchingTilePositions = (0 ..< boardSize)
+//                .map { (row: row, column: $0) }
+//                .filter { board[$0.row][$0.column].symbol == symbol }
+//
+//            if matchingTilePositions.count == boardSize {
+//                winningTiles.append(contentsOf: matchingTilePositions)
+//            }
+//        }
+//
+//        for column in 0 ..< boardSize {
+//            let matchingTilePositions = (0 ..< boardSize)
+//                .map { (row: $0, column: column) }
+//                .filter { board[$0.row][$0.column].symbol == symbol }
+//
+//            if matchingTilePositions.count == boardSize {
+//                winningTiles.append(contentsOf: matchingTilePositions)
+//            }
+//        }
+//
+//        let matchingDiagonalPositions = (0 ..< boardSize )
+//            .map { (row: $0, column: $0) }
+//            .filter { board[$0.row][$0.column].symbol == symbol }
+//        if matchingDiagonalPositions.count == boardSize {
+//            winningTiles.append(contentsOf: matchingDiagonalPositions)
+//        }
+//
+//        let matchingReverseDiagonalPositions = (0 ..< boardSize )
+//            .map { (row: $0, column: boardSize - $0 - 1) }
+//            .filter { board[$0.row][$0.column].symbol == symbol }
+//        if matchingReverseDiagonalPositions.count == boardSize {
+//            winningTiles.append(contentsOf: matchingReverseDiagonalPositions)
+//        }
         
         return winningTiles
     }
