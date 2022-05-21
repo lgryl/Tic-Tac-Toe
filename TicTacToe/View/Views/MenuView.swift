@@ -20,17 +20,22 @@ struct MenuView: View {
                         .frame(maxWidth: 150)
                         .padding()
                 }
+                .padding()
                 Spacer()
                 TileView {
                     Text("3x3")
+                        .font(.title)
+                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
                 }
-                .frame(maxWidth: 150)
+                .frame(maxWidth: 125)
                 .padding(.bottom)
                 NavigationLink(destination: GameView()) {
                     TileView {
                         Image(systemName: "play")
+                            .font(.title)
+                            .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
                     }
-                    .frame(maxWidth: 150)
+                    .frame(maxWidth: 125)
                 }
                 Spacer()
             }
@@ -45,5 +50,7 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+        MenuView()
+            .previewDevice("iPhone 13 Pro Max")
     }
 }
