@@ -11,41 +11,43 @@ struct GameView: View {
     @ObservedObject private var viewModel = ViewModel()
     
     var body: some View {
-        VStack {
-            Spacer()
-            BoardView(board: viewModel.game.board, onTileSelected: { row, column in
-                viewModel.makeMoveAt(row: row, column: column)
-            })
-            .padding()
-            Spacer()
-            navigationRow()
-            .padding()
-        }
-        .background(Color(white: 250 / 255))
-    }
-    
-    private func button(imageName: String, action: @escaping () -> Void) -> some View {
-        TileView {
-            Button {
-                action()
-            } label: {
-                Image(systemName: imageName)
-                    .font(.title)
-                    .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+        NavigationView {
+            VStack {
+                Spacer()
+                BoardView(board: viewModel.game.board, onTileSelected: { row, column in
+                    viewModel.makeMoveAt(row: row, column: column)
+                })
+                .padding()
+                Spacer()
+                navigationRow()
+                    .padding()
             }
+            .background(Color(white: 250 / 255))
+            .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
-    
+        
     private func navigationRow() -> some View {
         HStack {
-            button(imageName: "chevron.backward", action: {
-                print("Back")
-            })
+            NavigationLink(destination: Text("Foo")) {
+                TileView {
+                    Image(systemName: "arrow.backward")
+                        .font(.title)
+                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+                }
+            }
             .frame(maxWidth: 100)
             Spacer()
-            button(imageName: "arrow.counterclockwise", action: {
+            Button {
                 viewModel.resetGame()
-            })
+            } label: {
+                TileView {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.title)
+                        .foregroundStyle(LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom))
+                }
+            }
             .frame(maxWidth: 100)
         }
     }
