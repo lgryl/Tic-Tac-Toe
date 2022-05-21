@@ -13,7 +13,7 @@ class MenuViewModel: ObservableObject {
         static let maximum = 5
     }
     
-    @Published var boardSize = BoardSize.minimum
+    @AppStorage("boardSize") var boardSize = BoardSize.minimum
     
     func toggleBoardSize() {
         let boardSizeRange = (BoardSize.maximum - BoardSize.minimum + 1)
