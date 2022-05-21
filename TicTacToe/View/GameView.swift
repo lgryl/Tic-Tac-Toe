@@ -12,29 +12,30 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            ForEach(0..<viewModel.game.boardSize, id: \.self) { row in
-                HStack {
-                    ForEach(0..<viewModel.game.boardSize, id: \.self) { column in
-                        TileView(imageName: imageName(for: viewModel.game.symbolAt(row: row, column: column))) {
-                            viewModel.makeMoveAt(row: row, column: column)
+            Text("Tic Tac Toe")
+                .font(.largeTitle)
+                .padding(.top)
+            Spacer()
+            VStack {
+                ForEach(0..<viewModel.game.boardSize, id: \.self) { row in
+                    HStack {
+                        ForEach(0..<viewModel.game.boardSize, id: \.self) { column in
+                            TileView(tile: viewModel.game.board[row][column]) {
+                                viewModel.makeMoveAt(row: row, column: column)
+                            }
                         }
                     }
                 }
             }
+            .padding()
+            Spacer()
+            Button("Play again?") {
+                viewModel.resetGame()
+            }
         }
-        .padding()
     }
     
-    private func imageName(for symbol: Game.Symbol?) -> String? {
-        guard let symbol = symbol else {
-            return nil
-        }
-
-        switch symbol {
-        case .nought: return "circle"
-        case .cross: return "xmark"
-        }
-    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -44,18 +45,19 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct TileView: View {
-    var imageName: String?
+    var tile: Game.Tile
     var onTap: () -> Void
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(.blue)
+                .fill(color(for: tile.winning))
                 .aspectRatio(1, contentMode: .fit)
-            if let imageName = imageName {
-                Image(systemName: imageName)
-                    .resizable()
+            if let shape = self.shape(for: tile.symbol) {
+                shape
+                    .stroke(style: .init(lineWidth: 5, lineCap: .round))
                     .aspectRatio(contentMode: .fit)
+                    .padding()
                     .padding()
             }
             
@@ -63,5 +65,47 @@ struct TileView: View {
         .onTapGesture {
             onTap()
         }
+    }
+    
+    private func shape(for symbol: Game.Symbol?) -> some Shape {
+        guard let symbol = symbol else {
+            return AnyShape(EmptyShape())
+        }
+        
+        switch symbol {
+        case .nought:
+            return AnyShape(Circle())
+        case .cross:
+            return AnyShape(Cross())
+        }
+    }
+    
+    private func imageName(for symbol: Game.Symbol?) -> String? {
+        guard let symbol = symbol else {
+            return nil
+        }
+        
+        switch symbol {
+        case .nought: return "circle"
+        case .cross: return "xmark"
+        }
+    }
+    
+    private func color(for winning: Bool) -> Color {
+        winning ? .green : .blue
+    }
+}
+
+struct AnyShape: Shape {
+    private let _path: (CGRect) -> Path
+    
+    init<S: Shape>(_ wrapped: S) {
+        _path = { rect in
+            wrapped.path(in: rect)
+        }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        _path(rect)
     }
 }
