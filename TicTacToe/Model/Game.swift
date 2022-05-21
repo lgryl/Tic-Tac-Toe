@@ -76,7 +76,7 @@ struct Game {
         var winningTiles: [TilePosition] = []
         
         for rowIndex in 0 ..< boardSize {
-            let row = board[rowIndex]
+            let row = row(at: rowIndex)
             let matches = row.split { tile in
                 tile.symbol != symbol
             }
@@ -90,9 +90,9 @@ struct Game {
             }
         }
         
-        for rowIndex in 0 ..< boardSize {
-            let row = board[rowIndex]
-            let matches = row.split { tile in
+        for columnIndex in 0 ..< boardSize {
+            let column = column(at: columnIndex)
+            let matches = column.split { tile in
                 tile.symbol != symbol
             }
             
@@ -100,45 +100,65 @@ struct Game {
                 a.count >= requiredMatchLength
             }) {
                 for x in match.indices {
-                    winningTiles.append((row: rowIndex, column: x))
+                    winningTiles.append((row: x, column: columnIndex))
                 }
             }
         }
         
-//        for row in 0 ..< boardSize {
-//            let matchingTilePositions = (0 ..< boardSize)
-//                .map { (row: row, column: $0) }
-//                .filter { board[$0.row][$0.column].symbol == symbol }
-//
-//            if matchingTilePositions.count == boardSize {
-//                winningTiles.append(contentsOf: matchingTilePositions)
-//            }
-//        }
-//
-//        for column in 0 ..< boardSize {
-//            let matchingTilePositions = (0 ..< boardSize)
-//                .map { (row: $0, column: column) }
-//                .filter { board[$0.row][$0.column].symbol == symbol }
-//
-//            if matchingTilePositions.count == boardSize {
-//                winningTiles.append(contentsOf: matchingTilePositions)
-//            }
-//        }
-//
-//        let matchingDiagonalPositions = (0 ..< boardSize )
-//            .map { (row: $0, column: $0) }
-//            .filter { board[$0.row][$0.column].symbol == symbol }
-//        if matchingDiagonalPositions.count == boardSize {
-//            winningTiles.append(contentsOf: matchingDiagonalPositions)
-//        }
-//
-//        let matchingReverseDiagonalPositions = (0 ..< boardSize )
-//            .map { (row: $0, column: boardSize - $0 - 1) }
-//            .filter { board[$0.row][$0.column].symbol == symbol }
-//        if matchingReverseDiagonalPositions.count == boardSize {
-//            winningTiles.append(contentsOf: matchingReverseDiagonalPositions)
-//        }
+        let diagonalStartPositions = (0 ... boardSize - requiredMatchLength).map { (row: $0, column: 0) } + (0 ... boardSize - requiredMatchLength).map { (row: 0, column: $0 )} // remove duplicate
+        for startPosition in diagonalStartPositions {
+            let diagonalPositions = self.diagonal(startingAt: startPosition)
+            
+            let matches = diagonalPositions.split { position in
+                board[position.row][position.column].symbol != symbol
+            }
+            
+            if let match = matches.first(where: { a in
+                a.count >= requiredMatchLength
+            }) {
+                for x in match {
+                    winningTiles.append((row: x.row, column: x.column))
+                }
+            }
+        }
+        
+        let reverseDiagonalStartPositions = (0 ... boardSize - requiredMatchLength).map { (row: $0, column: boardSize - 1) } + (0 + requiredMatchLength - 1 ... boardSize - 1).map { (row: 0, column: $0 )}
+        for startPosition in reverseDiagonalStartPositions {
+            let reverseDiagonalPositions = self.reverseDiagonal(startingAt: startPosition)
+            
+            let matches = reverseDiagonalPositions.split { position in
+                board[position.row][position.column].symbol != symbol
+            }
+            
+            if let match = matches.first(where: { a in
+                a.count >= requiredMatchLength
+            }) {
+                for x in match {
+                    winningTiles.append((row: x.row, column: x.column))
+                }
+            }
+        }
         
         return winningTiles
+    }
+    
+    private func row(at index: Int) -> [Tile] {
+        guard index >= 0, index < boardSize else { return [] }
+        return board[index]
+    }
+    
+    private func column(at index: Int) -> [Tile] {
+        guard index >= 0, index < boardSize else { return [] }
+        return board.map { $0[index] }
+    }
+    
+    private func diagonal(startingAt position: (row: Int, column: Int)) -> [(row: Int, column: Int)] {
+        let length = boardSize - max(position.row, position.column)
+        return ( 0 ..< length ).map { (row: position.row + $0, column: position.column + $0) }
+    }
+    
+    private func reverseDiagonal(startingAt position: (row: Int, column: Int)) -> [(row: Int, column: Int)] {
+        let length = boardSize - max(position.row, boardSize - position.column - 1)
+        return ( 0 ..< length ).map { (row: position.row + $0, column: position.column - $0) }
     }
 }
