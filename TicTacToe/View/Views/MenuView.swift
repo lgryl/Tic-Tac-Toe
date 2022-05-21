@@ -50,7 +50,7 @@ struct MenuView: View {
                     .foregroundStyle(Theme.Gradients.cold)
             }
         }
-        .frame(maxWidth: 125)
+        .frame(maxWidth: 100)
         .padding(.bottom)
     }
     
@@ -61,7 +61,7 @@ struct MenuView: View {
                     .font(.title)
                     .foregroundStyle(Theme.Gradients.cold)
             }
-            .frame(maxWidth: 125)
+            .frame(maxWidth: 100)
         }
     }
 }
