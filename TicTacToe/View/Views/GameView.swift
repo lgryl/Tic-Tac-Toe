@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.presentationMode) private var presentationMode
+    
     @ObservedObject private var viewModel = ViewModel()
     
     var body: some View {
@@ -23,14 +25,18 @@ struct GameView: View {
                     .padding()
             }
             .background(Color(white: 250 / 255))
+            .navigationTitle("Game")
             .navigationBarHidden(true)
         }
+        .navigationBarBackButtonHidden(true)
         .navigationViewStyle(.stack)
     }
         
     private func navigationRow() -> some View {
         HStack {
-            NavigationLink(destination: Text("Foo")) {
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
                 TileView {
                     Image(systemName: "arrow.backward")
                         .font(.title)

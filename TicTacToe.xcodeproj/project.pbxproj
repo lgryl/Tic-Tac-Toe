@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB23A4E12826D676004CE426 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB23A4E02826D676004CE426 /* BoardView.swift */; };
+		CB23A4E32826E059004CE426 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB23A4E22826E059004CE426 /* MenuView.swift */; };
 		CB2501932824DE8C00ACFB46 /* Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2501922824DE8C00ACFB46 /* Cross.swift */; };
 		CB3FD6F7282670FE00BCB20A /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6F6282670FE00BCB20A /* TileView.swift */; };
 		CB3FD6F92826712500BCB20A /* AnyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FD6F82826712500BCB20A /* AnyShape.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		CB23A4E02826D676004CE426 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		CB23A4E22826E059004CE426 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		CB2501922824DE8C00ACFB46 /* Cross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cross.swift; sourceTree = "<group>"; };
 		CB3FD6F6282670FE00BCB20A /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		CB3FD6F82826712500BCB20A /* AnyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyShape.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				CB3FD6FA2826728A00BCB20A /* SymbolView.swift */,
 				CB3FD6FD282676FE00BCB20A /* GameTileView.swift */,
 				CB23A4E02826D676004CE426 /* BoardView.swift */,
+				CB23A4E22826E059004CE426 /* MenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				CB3FD6FE282676FE00BCB20A /* GameTileView.swift in Sources */,
 				CB3FD6FB2826728A00BCB20A /* SymbolView.swift in Sources */,
 				CBC3150C28171536004CBD67 /* ViewModel.swift in Sources */,
+				CB23A4E32826E059004CE426 /* MenuView.swift in Sources */,
 				CB23A4E12826D676004CE426 /* BoardView.swift in Sources */,
 				CB3FD6F7282670FE00BCB20A /* TileView.swift in Sources */,
 				CBC314FC28170CD2004CBD67 /* TicTacToeApp.swift in Sources */,
