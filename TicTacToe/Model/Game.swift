@@ -74,65 +74,43 @@ struct Game {
         
         for rowIndex in 0 ..< boardSize {
             let row = row(at: rowIndex)
-            let matches = row.split { tile in
+            let symbolGroups = row.split { tile in
                 tile.symbol != symbol
             }
             
-            if let match = matches.first(where: { a in
-                a.count >= requiredMatchLength
-            }) {
-                for x in match.indices {
-                    winningTiles.append((row: rowIndex, column: x))
-                }
+            if let match = symbolGroups.first(where: { $0.count >= requiredMatchLength }) {
+                match.indices.forEach { index in winningTiles.append((row: rowIndex, column: index)) }
             }
         }
         
         for columnIndex in 0 ..< boardSize {
             let column = column(at: columnIndex)
-            let matches = column.split { tile in
+            let symbolGroups = column.split { tile in
                 tile.symbol != symbol
             }
             
-            if let match = matches.first(where: { a in
-                a.count >= requiredMatchLength
-            }) {
-                for x in match.indices {
-                    winningTiles.append((row: x, column: columnIndex))
-                }
+            if let match = symbolGroups.first(where: { $0.count >= requiredMatchLength }) {
+                match.indices.forEach { index in winningTiles.append((row: index, column: columnIndex)) }
             }
         }
         
-        let diagonalStartPositions = (0 ... boardSize - requiredMatchLength).map { (row: $0, column: 0) } + (0 ... boardSize - requiredMatchLength).map { (row: 0, column: $0 )} // remove duplicate
-        for startPosition in diagonalStartPositions {
-            let diagonalPositions = self.diagonal(startingAt: startPosition)
-            
-            let matches = diagonalPositions.split { position in
+        for diagonalPositions in diagonalsPositions() {
+            let symbolGroups = diagonalPositions.split { position in
                 board[position.row][position.column].symbol != symbol
             }
             
-            if let match = matches.first(where: { a in
-                a.count >= requiredMatchLength
-            }) {
-                for x in match {
-                    winningTiles.append((row: x.row, column: x.column))
-                }
+            if let match = symbolGroups.first(where: { $0.count >= requiredMatchLength }) {
+                match.forEach { position in winningTiles.append((row: position.row, column: position.column)) }
             }
         }
         
-        let reverseDiagonalStartPositions = (0 ... boardSize - requiredMatchLength).map { (row: $0, column: boardSize - 1) } + (0 + requiredMatchLength - 1 ... boardSize - 1).map { (row: 0, column: $0 )}
-        for startPosition in reverseDiagonalStartPositions {
-            let reverseDiagonalPositions = self.reverseDiagonal(startingAt: startPosition)
-            
-            let matches = reverseDiagonalPositions.split { position in
+        for reverseDiagonalPositions in reverseDiagonalsPositions() {
+            let symbolGroups = reverseDiagonalPositions.split { position in
                 board[position.row][position.column].symbol != symbol
             }
             
-            if let match = matches.first(where: { a in
-                a.count >= requiredMatchLength
-            }) {
-                for x in match {
-                    winningTiles.append((row: x.row, column: x.column))
-                }
+            if let match = symbolGroups.first(where: { $0.count >= requiredMatchLength }) {
+                match.forEach { position in winningTiles.append((row: position.row, column: position.column)) }
             }
         }
         
@@ -149,9 +127,25 @@ struct Game {
         return board.map { $0[index] }
     }
     
+    private func diagonalStartPositions() -> [(row: Int, column: Int)] {
+        (0 ... boardSize - requiredMatchLength).map { (row: $0, column: 0) } + (0 ... boardSize - requiredMatchLength).map { (row: 0, column: $0 )} // remove duplicate
+    }
+    
+    private func diagonalsPositions() -> [[(row: Int, column: Int)]] {
+        diagonalStartPositions().map { diagonal(startingAt: $0) }
+    }
+    
     private func diagonal(startingAt position: (row: Int, column: Int)) -> [(row: Int, column: Int)] {
         let length = boardSize - max(position.row, position.column)
         return ( 0 ..< length ).map { (row: position.row + $0, column: position.column + $0) }
+    }
+    
+    private func reverseDiagonalsStartPositions() -> [(row: Int, column: Int)] {
+        (0 ... boardSize - requiredMatchLength).map { (row: $0, column: boardSize - 1) } + (0 + requiredMatchLength - 1 ... boardSize - 1).map { (row: 0, column: $0 )} // remove duplicate
+    }
+    
+    private func reverseDiagonalsPositions() -> [[(row: Int, column: Int)]] {
+        reverseDiagonalsStartPositions().map { reverseDiagonal(startingAt: $0) }
     }
     
     private func reverseDiagonal(startingAt position: (row: Int, column: Int)) -> [(row: Int, column: Int)] {
