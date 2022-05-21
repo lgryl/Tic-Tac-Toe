@@ -29,7 +29,7 @@ struct Game {
         case finished
     }
     
-    struct Tile {
+    struct Tile: Equatable {
         var symbol: Symbol?
         var winning: Bool = false
     }
